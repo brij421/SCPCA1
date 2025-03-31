@@ -1,5 +1,5 @@
 """
-WSGI config for WeatherBug project.
+WSGI config for WeatherPredic project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
