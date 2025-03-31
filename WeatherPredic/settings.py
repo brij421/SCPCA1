@@ -122,3 +122,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 ALLOWED_HOSTS = ['cce05b6897534d78b03dfe1d321333ce.vfs.cloud9.eu-west-1.amazonaws.com']
+ALLOWED_HOSTS = ['127.0.0.1']
