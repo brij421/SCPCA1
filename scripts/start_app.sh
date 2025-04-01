@@ -1,6 +1,6 @@
 #!/usr/bin/bash 
 
-sed -i 's/\[]/\["54.144.250.113"]/' /mnt/c/SCP/SCPCA1/blog/settings.py
+sed -i 's/\[]/\["54.144.250.113"]/' /home/ubuntu/SCPCA1/WeatherPredic/settings.py
 
 python manage.py migrate 
 python manage.py makemigrations     

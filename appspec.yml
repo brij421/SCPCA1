@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files: 
   - source: /
-    destination: /mnt/c/SCP/SCPCA1
+    destination: /home/ubuntu/SCPCA1
 permissions:
-  - object: /mnt/c/SCP/SCPCA1
+  - object: /home/ubuntu/SCPCA1
     owner: ubuntu
     group: ubuntu
 hooks:

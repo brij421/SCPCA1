@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo rm -rf /mnt/c/SCP/SCPCA1*
+sudo rm -rf /home/ubuntu/SCPCA1*
