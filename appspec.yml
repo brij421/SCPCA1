@@ -21,10 +21,12 @@ hooks:
         runas: ubuntu
       - location: scripts/gunicorn.sh
         timeout: 300
-        runas: ubuntu
+        # runas: ubuntu
+        runas: root
       - location: scripts/nginx.sh
         timeout: 300
-        runas: ubuntu
+        # runas: ubuntu
+        runas: root
   ApplicationStop:
       - location: scripts/stop_app.sh
         timeout: 300
