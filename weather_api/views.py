@@ -77,9 +77,87 @@ def result(request):
     	return redirect('home')
 
 
+import requests
+from django.contrib import messages
+
+def send_email(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        api_url = "https://ooklf83w6g.execute-api.eu-west-1.amazonaws.com/WeatherStage"
+        data = {
+            "email": email,
+            "subject": "Test",
+            "content": "Hello from WeatherPredic! Thank you for subscribing."
+        }
+
+        try:
+            response = requests.post(api_url, json=data)
+            if response.status_code == 200:
+                messages.success(request, "Email sent successfully!")
+            else:
+                messages.error(request, "Failed to send email.")
+        except Exception as e:
+            messages.error(request, f"Error: {str(e)}")
+
+    return redirect('home')
+
+# Activity prediction API 
+import requests
+from django.shortcuts import render
+
+def weather_with_activities(request):
+    result = None
+    if request.method == 'POST':
+        country = request.POST.get('country')
+        api_url = "https://65wb2cfcug.execute-api.eu-west-1.amazonaws.com/hproduction/suggest-activities?weather_condition="  # 👈 Your Lambda URL here
+
+        try:
+            response = requests.get(api_url, params={'country': country})
+            if response.status_code == 200:
+                result = response.json()
+            else:
+                result = {'error': f"API error: {response.status_code}"}
+        except Exception as e:
+            result = {'error': str(e)}
+
+    return render(request, 'home.html', {'result': result})
+
+
+
 # def social_links(request):
 #     sl = Social.objects.all()
 #     context = {
 #         'sl': sl
 #     }
 #     return render(request, 'weather_api/base.html', context)
+
+# import requests
+# from django.shortcuts import redirect
+# from django.views.decorators.csrf import csrf_exempt
+# from django.contrib import messages
+
+# @csrf_exempt
+# def send_email(request):
+#     if request.method == 'POST':
+#         email = request.POST.get('email')
+#         subject = "Test"
+#         content = "Hello, thank you for subscribing to Weather Predic!"
+
+#         api_url = "https://ooklf83w6g.execute-api.eu-west-1.amazonaws.com/WeatherStage"
+#         headers = {'Content-Type': 'application/json'}
+#         payload = {
+#             "email": email,
+#             "subject": subject,
+#             "content": content
+#         }
+
+#         try:
+#             response = requests.post(api_url, json=payload, headers=headers)
+#             if response.status_code == 200:
+#                 messages.success(request, "Email sent successfully! Thank you for the subscrib.")
+#             else:
+#                 messages.error(request, f"Failed to send email. Status: {response.status_code}")
+#         except Exception as e:
+#             messages.error(request, f"Error: {str(e)}")
+
+#     return redirect('home')  # redirect to your homepage or confirmation page

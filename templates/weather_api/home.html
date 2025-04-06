@@ -4,3 +4,29 @@
 
 {% block content %}
 {% endblock content %}
+
+
+<form method="post" action="{% url 'home' %}">
+    {% csrf_token %}
+    <input type="text" name="country" placeholder="Enter country" required>
+    <button type="submit">Check Weather & Activities</button>
+</form>
+
+{% if result %}
+    {% if result.weather %}
+        <h3>Weather: {{ result.weather.condition }} ({{ result.weather.temperature_celsius }}°C)</h3>
+    {% endif %}
+
+    {% if result.activities %}
+        <h4>Suggested Activities:</h4>
+        <ul>
+            {% for activity in result.activities %}
+                <li>{{ activity }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if result.error %}
+        <p style="color: red;">Error: {{ result.error }}</p>
+    {% endif %}
+{% endif %}

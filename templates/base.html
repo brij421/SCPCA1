@@ -60,18 +60,54 @@
         <div class="container">
           <div class="row">
             <div class="col-md-8">
-              <form action="#" class="subscribe-form">
+              {% comment %} <form action="#" class="subscribe-form">
                 <input type="text" placeholder="Enter your email..." required>
                 <input type="submit" value="Subscribe" required>
+              </form> {% endcomment %}
+              <form method="post" action="{% url 'home' %}">
+                {% csrf_token %}
+                <input type="text" name="country" placeholder="Enter country" required>
+                <button type="submit">Check Weather & Activities</button>
+            </form>
+            
+            {% comment %} {% if result %}
+                {% if result.weather %}
+                    <h3>Weather: {{ result.weather.condition }} ({{ result.weather.temperature_celsius }}°C)</h3>
+                {% endif %}
+            
+                {% if result.activities %}
+                    <h4>Suggested Activities:</h4>
+                    <ul>
+                        {% for activity in result.activities %}
+                            <li>{{ activity }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            
+                {% if result.error %}
+                    <p style="color: red;">Error: {{ result.error }}</p>
+                {% endif %}
+            {% endif %}
+            
+              <form action="{% url 'send_email' %}" method="post" class="subscribe-form">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Enter your email." required>
+                <input type="submit" value="Subscribe">
               </form>
+              {% if messages %}
+                {% for message in messages %}
+                  <p style="color: green;">{{ message }}</p>
+                {% endfor %}
+              {% endif %} {% endcomment %}
+
             </div>
             <div class="col-md-3 col-md-offset-1">
               <div class="social-links">
                 <a href="https://www.mdomarfaruk.tk" target="_blank"><i class="fa fa-globe"></i></a>
-                <a target="_blank" href="https://www.facebook.com/IamOmaR22"><i class="fa fa-facebook"></i></a>
-                <a target="_blank" href="https://www.instagram.com/IamOmaR_22"><i class="fa fa-instagram"></i></a>
-                <a target="_blank" href="https://www.twitter.com/IamOmaR22"><i class="fa fa-twitter"></i></a>
-                <a target="_blank" href="https://www.github.com/IamOmaR22"><i class="fa fa-github"></i></a>
+                <a target="_blank" href="https://www.facebook.com/brijesh421"><i class="fa fa-facebook"></i></a>
+                <a target="_blank" href="https://www.instagram.com/brijesh_mak07?igsh=c2ZlbnZoc2h4aXlj "><i class="fa fa-instagram"></i></a>
+                <a target="_blank" href="https://www.twitter.com/blank"><i class="fa fa-twitter"></i></a>
+                <a target="_blank" href="https://github.com/brij421"><i class="fa fa-github"></i></a>
                 <a target="_blank" href="https://www.linkedin.com/in/brijesh-makwana-a69a87173/"><i class="fa fa-linkedin"></i></a>
               </div>
             </div>
