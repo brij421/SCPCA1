@@ -70,7 +70,7 @@
                 <button type="submit">Check Weather & Activities</button>
             </form>
             
-            {% comment %} {% if result %}
+             {% if result %}
                 {% if result.weather %}
                     <h3>Weather: {{ result.weather.condition }} ({{ result.weather.temperature_celsius }}°C)</h3>
                 {% endif %}
@@ -98,7 +98,7 @@
                 {% for message in messages %}
                   <p style="color: green;">{{ message }}</p>
                 {% endfor %}
-              {% endif %} {% endcomment %}
+              {% endif %} 
 
             </div>
             <div class="col-md-3 col-md-offset-1">
